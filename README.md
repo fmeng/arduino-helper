@@ -1,7 +1,12 @@
+# 目的
+一键搭建 Arduino 开发环境
+# 使用步骤
+## 下载项目
 # 仓库地址
 https://gitee.com/fmeng-no-bug/arduino-helper
+https://github.com/fmeng/arduino-helper
 
-# 目的
+
 # 使用方法
 使用
 # 脚本逻辑

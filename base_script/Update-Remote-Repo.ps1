@@ -12,6 +12,34 @@ function Git-Installed {
    return $false
 }
 
+function Try-Init-Repo {
+    $remoteGiteeRepo = "git@gitee.com:fmeng-no-bug/arduino-helper.git"
+
+    # 当前目录不是 git 仓库
+    if (-not (Test-Path -Path ".git")) {
+        git init .
+        git remote add origin $remoteGiteeRepo
+        Write-Host "初始化项目地址0 origin $remoteGiteeRepo" -ForegroundColor Red
+        return
+    }
+
+    # remote中无origin
+    $remotes = git remote
+    if (-not ($remotes -contains "origin")) {
+        git remote add origin $remoteGiteeRepo
+        Write-Host "初始化项目地址1 origin $remoteGiteeRepo" -ForegroundColor Red
+        return
+    }
+
+    # remote中有origin, url不是gitee的
+    $originUrl = git remote get-url origin
+    if (-not ($originUrl -eq $remoteGiteeRepo)) {
+        git remote set-url origin $remoteGiteeRepo
+        Write-Host "初始化项目地址2 origin $remoteGiteeRepo" -ForegroundColor Red
+        return
+     }
+}
+
 function Remote-Repo-Updated  {
     # 检查当前目录是否为 Git 仓库
     if (-not (Test-Path .git)) {

@@ -27,6 +27,9 @@ if (Git-Installed) {
 }
 # 如果git未安装, 尝试安装
 Install-Git
+# 尝试初始化仓库
+Try-Init-Repo
+# 更新代码
 $repoUpdated = Remote-Repo-Updated
 if ($repoUpdated) {
     Do-Update-Repo
